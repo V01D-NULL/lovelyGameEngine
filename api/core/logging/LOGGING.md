@@ -1,7 +1,7 @@
 # 3 standard logging methods -> info, warn, and err:
 
 ### EXAMPLE:
-    ``` lovely::logging::logger::info("test", NULL); ```
+    lovely::logging::logger::info("test", NULL);
 
 ### !IMPORTANT!
  - ONLY STRINGS, 
