@@ -1,9 +1,9 @@
 CC = @g++
 LDFLAGS = -lGL -lGLU -lglfw3 -lX11 -lXxf86vm -lXrandr -lpthread -lXi -ldl -lXinerama -lXcursor
 
-SRCS = $(wildcard src/*.cxx src/core/*.cxx)
+SRCS = $(wildcard src/*.cxx src/core/*.cxx src/core/logging/*.cxx src/interface/*.cxx)
 OBJ = $(SRCS:.cxx=.o)
-CFLAGS = -c -std=c++14
+CFLAGS = -c -std=c++14 -fconcepts-ts
 OUTFILE = lovelyEngine.exec
 
 # CL = color
@@ -19,7 +19,10 @@ $(OUTFILE): $(OBJ)
 	$(CC) $^ $(LDFLAGS) -o $@
 
 clean:
-	rm $(OBJ)
+	rm $(OBJ) || @echo "" # Just to catch some file not found errors
+	
+run:
+	./$(OUTFILE)
 	
 %.o: %.cxx
 	@printf "Compiling: $@\n";
