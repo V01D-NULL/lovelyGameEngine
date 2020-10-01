@@ -2,6 +2,8 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
+#include "core/logging/logging.h"
+
 int main() {
     if (!glfwInit())
     {
@@ -9,4 +11,8 @@ int main() {
     }
     else
         std::cout << "Success\n";
+
+    lovely::logging::logger::info("test", NULL);
+    lovely::logging::logger::warn("test", NULL);
+    lovely::logging::logger::err("test", NULL);
 }
