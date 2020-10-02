@@ -1,5 +1,5 @@
-- [X] Implement a logging class
-- [X] Create a namespace name
+- [X] Implement a logging class  __[__ _October 1st, 2020_ __]__
+- [X] Create a namespace name __[__ _October 1st, 2020_ __]__
 - [ ] Create a window rendering class
 - [ ] Get OpenGL working (setup)
 - [ ] Initialize GLEW
