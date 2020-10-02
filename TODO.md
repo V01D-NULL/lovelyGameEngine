@@ -1,0 +1,4 @@
+- [X] Implement a logging class
+- [X] Create a namespace name
+- [ ] Create a window rendering class
+- [ ] Get OpenGL working (setup)
