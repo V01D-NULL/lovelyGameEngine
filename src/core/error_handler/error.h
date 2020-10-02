@@ -11,7 +11,7 @@ namespace lovely
         class get_GL_error
         {
         public:
-            get_GL_error(int error, const std::string error_message);
+            get_GL_error(int error, const char* error_message);
             ~get_GL_error();
         };
     }
