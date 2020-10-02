@@ -13,9 +13,13 @@
  - The string must be either a C style string, or converted to one
  - A non string datatype CAN be converted to a string (MUST be C style)
  DEMO:
-    `int a  = 4;
-     std::string msg = "test"; //Or const char*
-     std::string a_converted = std::to_string(a); //Convert 4 to "4"
-     //Incase std::string is passed, use the .c_str() function.
-     ...info(msg.c_str(), a.c_str();`
+    `int a  = 4;`
+
+    `std::string msg = "test"; //Or const char*`
+    
+    `std::string a_converted = std::to_string(a); //Convert 4 to "4"`
+    
+    `//Incase std::string is passed, use the .c_str() function.`
+    
+    `...info(msg.c_str(), a.c_str();`
     `
