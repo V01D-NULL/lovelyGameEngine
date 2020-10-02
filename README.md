@@ -6,7 +6,7 @@ As of right now, lovelyGameEngine is JUST for me to learn how game engines work.
 
 Who know's, maybe this will become more than an experiment!
 
-The lovely Game engine also aims to be cross platform.
+The lovely Game engine also aims to be **cross platform.**
 
 ### Language used:
 I am using C++ to develop the game engine.
