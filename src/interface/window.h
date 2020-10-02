@@ -1,6 +1,6 @@
 #pragma once
 
-#include <iostream>
+#include "../core/logging/logging.h"
 
 class Window {
 public:
