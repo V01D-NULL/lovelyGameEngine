@@ -1,4 +1,4 @@
-# 3 standard logging methods -> info, warn, and err:
+# 3 standard logging methods (Not programming methods) -> info, warn, and err:
 
 ### EXAMPLE:
     lovely::logging::logger::info("test", NULL);
@@ -10,7 +10,7 @@
 
 ### Passing variables to the lovely logger:
  NOTE:
- - The string must be either a C style string, or converted to one
+ - The string must be either a C style string, or be converted to one
  - A non string datatype CAN be converted to a string (MUST be C style)
  
  DEMO:
