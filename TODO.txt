@@ -1,4 +1,0 @@
-- Implement a logging class [DONE]
-- Create a namespace name   [DONE]
-- Create a window rendering class
-- Get OpenGL working (setup)
