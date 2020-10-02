@@ -1,9 +1,8 @@
 CC = @g++
 LDFLAGS = -lGL -lGLU -lglfw3 -lX11 -lXxf86vm -lXrandr -lpthread -lXi -ldl -lXinerama -lXcursor
-
-SRCS = $(wildcard src/*.cxx src/core/*.cxx src/core/logging/*.cxx src/interface/*.cxx)
+SRCS = $(shell find src/ -type f -name '*.cxx')
 OBJ = $(SRCS:.cxx=.o)
-CFLAGS = -c -std=c++14 -fconcepts-ts
+CFLAGS = -c -std=c++14 -fconcepts-ts -fpermissive
 OUTFILE = lovelyEngine.exec
 
 # CL = color
