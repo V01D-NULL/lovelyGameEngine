@@ -11,7 +11,7 @@ namespace lovely {
             lovely::logging::logger::err(error_description, error_string.c_str(), NULL);
         }
         
-        get_GL_error::get_GL_error(int error, const std::string error_message)
+        get_GL_error::get_GL_error(int error, const char* error_message)
         {
             glfwSetErrorCallback(error_handler_callback);
         }
