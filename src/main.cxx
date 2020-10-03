@@ -6,6 +6,8 @@
 #include "core/logging/logging.h"
 #include "interface/window.h"
 
+//test
+
 int main() {
     lovely::logging::logger::info("Initializing glfw...", NULL);
     
