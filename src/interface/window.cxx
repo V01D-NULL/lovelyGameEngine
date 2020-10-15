@@ -7,7 +7,7 @@ namespace lovely {
         
         window = glfwCreateWindow(width, height, title.c_str(), monitor, share);
         
-        if (window || window == NULL) 
+        if (!window || window == NULL) 
         {
             std::string result;
             lovely::logging::logger::err("Could not create window!\nAbort? (y/n) ", NULL);
