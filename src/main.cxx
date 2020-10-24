@@ -1,5 +1,4 @@
-#include <glad/glad.h>
-// #include <GL/glew.h>
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <string>
@@ -18,6 +17,6 @@ int main() {
     else
         lovely::logging::logger::info("Success", NULL);
     
-    lovely::Window(600, 400, "~lovely~", NULL, NULL);
-    
+    lovely::Window(900, 700, "~lovely~", NULL, NULL);
+    while (1);
 }

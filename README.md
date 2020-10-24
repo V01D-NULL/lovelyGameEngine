@@ -18,6 +18,8 @@ I am using C++ to develop the game engine.
 - (OpenGL)
 - glfw
 - glew
+- glm (OpenGL Mathematics)
+- SOIL2
 
 # Special thanks:
 - [The Chernos](https://www.youtube.com/user/TheChernoProject) Game Engine series: Sparky, and Hazel.
