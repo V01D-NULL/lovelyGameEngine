@@ -1,6 +1,6 @@
-#echo "Installing packages"
-#sudo pacman -Sy premake p7zip --noconfirm
-#sudo pip install cmake
+echo "Installing packages"
+sudo pacman -Sy premake p7zip --noconfirm
+sudo pip install cmake
 
 cd ../
 
