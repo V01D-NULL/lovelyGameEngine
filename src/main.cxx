@@ -2,6 +2,7 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <string>
+#include <SOIL.h>
 
 #include "core/logging/logging.h"
 #include "interface/window.h"
@@ -18,5 +19,7 @@ int main() {
         lovely::logging::logger::info("Success", NULL);
     
     lovely::Window(900, 700, "~lovely~", NULL, NULL);
+    
+    
     while (1);
 }
