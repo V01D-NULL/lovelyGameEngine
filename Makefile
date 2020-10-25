@@ -1,5 +1,5 @@
 CC = @g++
-LDFLAGS = -lGL -lGLU -lglfw3 -lX11 -lXxf86vm -lXrandr -lpthread -lXi -ldl -lXinerama -lXcursor -LGLEW -lglut -lSOIL
+LDFLAGS = -lglfw3 -lX11 -lXxf86vm -lXrandr -lpthread -lXi -ldl -lXinerama -lXcursor -lGLEW -lglut -lSOIL -lGL -lGLU
 SRCS = $(shell find src/ -type f -name '*.cxx')
 OBJ = $(SRCS:.cxx=.o)
 CFLAGS = -c -std=c++14 -fconcepts-ts -fpermissive

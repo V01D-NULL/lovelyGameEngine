@@ -30,6 +30,7 @@ int main() {
     
     lovely::Window(900, 700, "~lovely~", NULL, NULL);
     
+    glewInit();
     
     while (1);
 }
