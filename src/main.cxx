@@ -30,7 +30,10 @@ int main() {
     
     lovely::Window(900, 700, "~lovely~", NULL, NULL);
     
-    glewInit();
+    GLenum status = glewInit();
+    if (GLEW_OK != status)
+    {
+        lovely::logging::logger::err("Error initializing GLEW! -->", glewGetErrorString(status), NULL);
+    }
     
-    while (1);
 }
