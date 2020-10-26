@@ -10,6 +10,9 @@ namespace lovely {
     public:
         Window(int width, int height, std::string title, GLFWmonitor* monitor, GLFWwindow* share); //Last two can be NULL
         ~Window();
+
+    private:
+        void getWindowFrameBuffer();
         
     private:
         GLFWwindow* window;

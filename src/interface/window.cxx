@@ -9,9 +9,11 @@ namespace lovely {
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
         
+        //Needed by apple devices
         #ifdef __APPLE__
             glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
         #endif
+            
         window = glfwCreateWindow(width, height, title.c_str(), monitor, share);
         
         if (!window || window == NULL) 
@@ -24,9 +26,17 @@ namespace lovely {
             else
                 return;
         }
+        getWindowFrameBuffer();
+        
+        glfwMakeContextCurrent(window);
         
     }
-
+    
+    void Window::getWindowFrameBuffer()
+    {
+        //getFrameBuffer
+    }
+    
     Window::~Window()
     {
         lovely::logging::logger::info("~window", NULL);

@@ -16,24 +16,17 @@
 
 #include "core/logging/logging.h"
 #include "interface/window.h"
+#include "init.h"
 
 int main() {
-    lovely::logging::logger::info("Initializing glfw...", NULL);
+    //Init glfw
+    lovely::init initializer;
+    initializer.init_glfw();
     
-    if (!glfwInit())
-    {
-        lovely::logging::logger::err("Could not initialize glfw.", NULL);
-        return -1;
-    }
-    else
-        lovely::logging::logger::info("Success", NULL);
+    //Create window
+    lovely::Window(700, 900, "~lovely~", NULL, NULL);
     
-    lovely::Window(900, 700, "~lovely~", NULL, NULL);
+    initializer.init_glew(); //glew must be initialized after creating a window
     
-    GLenum status = glewInit();
-    if (GLEW_OK != status)
-    {
-        lovely::logging::logger::err("Error initializing GLEW! -->", glewGetErrorString(status), NULL);
-    }
     
 }
