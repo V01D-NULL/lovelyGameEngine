@@ -1,5 +1,5 @@
 echo "Installing packages"
-sudo pacman -Sy premake glm --noconfirm
+sudo pacman -Sy glm --noconfirm
 sudo pip install cmake
 
 cd ../
