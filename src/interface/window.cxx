@@ -22,21 +22,33 @@ namespace lovely {
             lovely::logging::logger::err("Could not create window!\nAbort? (y/n) ", NULL);
             std::cin >> result;
             if (result == "y")
+            {
+                glfwTerminate();
                 exit(EXIT_FAILURE);
+            }
             else
                 return;
         }
-        getWindowFrameBuffer();
-        
         glfwMakeContextCurrent(window);
-        
+        glViewport(0, 0, width, height);
     }
     
-    void Window::getWindowFrameBuffer()
-    {
-        //getFrameBuffer
+    void Window::pollEvents() {
+        //Setup event handlers
+        Events lovely_events;
+        glfwSetWindowCloseCallback(window, lovely_events.E_closing_callback);
+        glfwSetWindowSizeCallback(window, lovely_events.E_resize_callback);
+        glfwSetKeyCallback(window, lovely_events.E_input); //Not setup yet
+
+        //Main loop
+        while (!glfwWindowShouldClose(window))
+        {   
+            glClear(GL_COLOR_BUFFER_BIT);
+            glfwSwapBuffers(window);
+            glfwPollEvents();
+        }
     }
-    
+
     Window::~Window()
     {
         lovely::logging::logger::info("~window", NULL);

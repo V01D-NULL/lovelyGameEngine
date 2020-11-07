@@ -2,9 +2,6 @@
 #include "init.h"
 #include "core/logging/logging.h"
 
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-
 namespace lovely {
     
     void init::init_glfw()

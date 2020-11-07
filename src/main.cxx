@@ -24,9 +24,11 @@ int main() {
     initializer.init_glfw();
     
     //Create window
-    lovely::Window(700, 900, "~lovely~", NULL, NULL);
-    
+    lovely::Window window(1200, 700, "~lovely~", NULL, NULL);
+
     initializer.init_glew(); //glew must be initialized after creating a window
-    
-    
+
+    //Poll events
+    window.pollEvents();
+
 }
