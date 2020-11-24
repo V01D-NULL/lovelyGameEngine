@@ -1,5 +1,5 @@
 sudo apt update
-sudo apt install xorg-dev libglu1-mesa-dev libglfw3-dev libsoil-dev libglm-dev -y
+sudo apt install xorg-dev libglu1-mesa-dev libglfw3-dev libsoil-dev libglm-dev cmake libglew-dev -y
 
 cd ..
 
