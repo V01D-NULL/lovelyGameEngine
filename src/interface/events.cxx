@@ -16,6 +16,7 @@ static void Events::E_resize_callback(GLFWwindow* window, int width, int height)
 }
 
 //Handle keyboard input events
-static void Events::E_input() {
-
+static void Events::E_input(GLFWwindow* window, int key, int scancode, int action, int mods) {
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, GLFW_TRUE);
 }
