@@ -5,6 +5,7 @@
 #include <GLFW/glfw3.h>
 #include "../core/logging/logging.h"
 
+//https://stackoverflow.com/questions/1000663/using-a-c-class-member-function-as-a-c-callback-function
 namespace lovely {
     namespace events {
         class Events {

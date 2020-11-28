@@ -1,10 +1,14 @@
-/* events.cxx - Event handler (among other) callbacks are handled here*/
+/* events.cxx - Event handler. Callbacks are handled here*/
+
 #include "events.h"
 
 namespace lovely {
     namespace events {
         //Handle closing events
         static void Events::E_closing_callback(GLFWwindow* window) {
+            /*
+
+            */
             lovely::logging::logger::info("Window is closing", NULL);
         }
 
