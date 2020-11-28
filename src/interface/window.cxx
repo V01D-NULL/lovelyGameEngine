@@ -83,7 +83,9 @@ namespace lovely {
         */
         lovely::GL::Shader shader;
         GLuint program;
-        if (!shader.load_basic_shaders(program, "../GL/shaders/vertex_core.glsl", "../GL/shaders/fragment_core.glsl"))
+        std::string vertex_core = "../GL/shaders/vertex_core.glsl";
+        std::string fragment_core = "../GL/shaders/fragment_core.glsl";
+        if (!shader.load_basic_shaders(program, vertex_core, fragment_core))
         {
             lovely::logging::logger::err("Function `load_shader` returned false!", NULL);
         }
