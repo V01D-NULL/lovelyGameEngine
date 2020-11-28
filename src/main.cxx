@@ -17,6 +17,7 @@
 #include "core/logging/logging.h"
 #include "interface/window.h"
 #include "init.h"
+#include "main.h"
 
 int main() {
     //Init glfw
@@ -31,4 +32,9 @@ int main() {
     //Poll events
     window.pollEvents();
 
+}
+
+void Main::createVBO() {
+    GLuint b = 10;
+    glGenBuffers(sizeof(int), &b);
 }
