@@ -56,7 +56,7 @@ namespace lovely {
         */
         Main main;
         //Setup event handlers
-        Events lovely_events;
+        lovely::events::Events lovely_events;
         glfwSetWindowCloseCallback(window, lovely_events.E_closing_callback);
         glfwSetWindowSizeCallback(window, lovely_events.E_resize_callback);
         glfwSetKeyCallback(window, lovely_events.E_input);
