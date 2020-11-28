@@ -6,6 +6,8 @@ namespace lovely {
     
     void init::init_glfw()
     {
+        /*
+        */
         lovely::logging::logger::info("Initializing glfw...", NULL);
     
         if (!glfwInit())
