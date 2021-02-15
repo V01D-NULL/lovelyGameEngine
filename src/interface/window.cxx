@@ -1,17 +1,6 @@
 #include "window.h"
+#include <GL/gl.h>
 
-#define NK_INCLUDE_FIXED_TYPES
-#define NK_INCLUDE_STANDARD_IO
-#define NK_INCLUDE_STANDARD_VARARGS
-#define NK_INCLUDE_DEFAULT_ALLOCATOR
-#define NK_INCLUDE_VERTEX_BUFFER_OUTPUT
-#define NK_INCLUDE_FONT_BAKING
-#define NK_INCLUDE_DEFAULT_FONT
-#define NK_IMPLEMENTATION
-#define NK_GLFW_GL2_IMPLEMENTATION
-#define NK_KEYSTATE_BASED_INPUT
-#include "../nuklear.h"
-#include "../nuklear_glfw_gl2.h"
 
 namespace lovely {
     Window::Window(int width, int height, std::string title, GLFWmonitor* monitor, GLFWwindow* share)
@@ -30,7 +19,8 @@ namespace lovely {
         lovely::logging::logger::info("Creating window", NULL);
         this->width = width;
         this->height = height;
-            
+        
+        //Setting window hints somehow disables the UI from being displayed. That is why there isn't a single window hint function call
         window = glfwCreateWindow(width, height, title.c_str(), monitor, share);
         
         if (!window || window == NULL) 
@@ -50,7 +40,7 @@ namespace lovely {
         
         glfwMakeContextCurrent(window);
         glfwGetWindowSize(window, &width, &height);
-        // glViewport(0, 0, width, height);
+        glViewport(0, 0, width, height);
     }
     
     void Window::pollEvents() {
@@ -63,72 +53,84 @@ namespace lovely {
             = Set function callbacks
             = Enter main loop, poll events, render, etc...
         */
-        
         Main main;
+
         //Setup event handlers
-        // lovely::events::Events lovely_events;
-        // glfwSetWindowCloseCallback(window, lovely_events.E_closing_callback);
-        // glfwSetWindowSizeCallback(window, lovely_events.E_resize_callback);
-        // glfwSetKeyCallback(window, lovely_events.E_input);
+        lovely::events::Events lovely_events;
+        glfwSetWindowCloseCallback(window, lovely_events.E_closing_callback);
+        glfwSetWindowSizeCallback(window, lovely_events.E_resize_callback);
+        glfwSetKeyCallback(window, lovely_events.E_input);
 
         // main.createVBO();
-        // load_shaders();
+        load_shaders();
 
-        //Main loop
-        struct nk_context *ctx;
-        struct nk_colorf bg;
-        ctx = nk_glfw3_init(this->window, NK_GLFW3_INSTALL_CALLBACKS);
-        struct nk_font_atlas *atlas;
+        //prepare UI
+        this->ctx = nk_glfw3_init(this->window, NK_GLFW3_INSTALL_CALLBACKS);
         nk_glfw3_font_stash_begin(&atlas);
         nk_glfw3_font_stash_end();
-        bg.r = 0.10f, bg.g = 0.18f, bg.b = 0.24f, bg.a = 1.0f;
+        this->bg.r = 0.10f, this->bg.g = 0.18f, this->bg.b = 0.24f, this->bg.a = 1.0f;
+
+        //Main loop
         while (!glfwWindowShouldClose(window))
         {   
-            // glClear(GL_COLOR_BUFFER_BIT);
-            // glfwSwapBuffers(window);
             glfwPollEvents();
-            nk_glfw3_new_frame();
-            if (nk_begin(ctx, "Demo", nk_rect(50, 50, 230, 250),
-            NK_WINDOW_BORDER|NK_WINDOW_MOVABLE|NK_WINDOW_SCALABLE|
-            NK_WINDOW_MINIMIZABLE|NK_WINDOW_TITLE))
-            {
-                enum {EASY, HARD};
-                static int op = EASY;
-                static int property = 20;
-                nk_layout_row_static(ctx, 30, 80, 1);
-                if (nk_button_label(ctx, "button"))
-                    lovely::logging::logger::info("Button was pressed", NULL);
-                
-                nk_layout_row_dynamic(ctx, 30, 2);
-                if (nk_option_label(ctx, "easy", op == EASY)) op = EASY;
-                if (nk_option_label(ctx, "hard", op == HARD)) op = HARD;
-
-                nk_layout_row_dynamic(ctx, 25, 1);
-                nk_property_int(ctx, "Compression:", 0, &property, 100, 10, 1);
-
-                nk_layout_row_dynamic(ctx, 20, 1);
-                nk_label(ctx, "background:", NK_TEXT_LEFT);
-                nk_layout_row_dynamic(ctx, 25, 1);
-
-                if (nk_combo_begin_color(ctx, nk_rgb_cf(bg), nk_vec2(nk_widget_width(ctx),400))) {
-                    nk_layout_row_dynamic(ctx, 120, 1);
-                    bg = nk_color_picker(ctx, bg, NK_RGBA);
-                    nk_layout_row_dynamic(ctx, 25, 1);
-                    bg.r = nk_propertyf(ctx, "#R:", 0, bg.r, 1.0f, 0.01f,0.005f);
-                    bg.g = nk_propertyf(ctx, "#G:", 0, bg.g, 1.0f, 0.01f,0.005f);
-                    bg.b = nk_propertyf(ctx, "#B:", 0, bg.b, 1.0f, 0.01f,0.005f);
-                    bg.a = nk_propertyf(ctx, "#A:", 0, bg.a, 1.0f, 0.01f,0.005f);
-                    nk_combo_end(ctx);
-			    }
-            }
-            nk_end(ctx);
-            glfwGetWindowSize(this->window, &width, &height);
-            glViewport(0, 0, this->width, this->height);
-            glClear(GL_COLOR_BUFFER_BIT);
-            glClearColor(bg.r, bg.g, bg.b, bg.a);
-            nk_glfw3_render(NK_ANTI_ALIASING_ON);
-            glfwSwapBuffers(this->window);
+            // this->draw_UI();
+            
+            glBegin(GL_POLYGON);
+                glColor3f(1, 0, 0); glVertex3f(-0.6, -0.75, 0.5);
+                glColor3f(0, 1, 0); glVertex3f(0.6, -0.75, 0);
+                glColor3f(0, 0, 1); glVertex3f(0, 0.75, 0);
+            glEnd();
+            
         }
+    }
+
+    //Any UI changes should go in here
+    void Window::draw_UI()
+    {
+        nk_glfw3_new_frame();
+        if (nk_begin(this->ctx, "Lovely UI demo", nk_rect(50, 50, 230, 250),
+        NK_WINDOW_BORDER|NK_WINDOW_MOVABLE|NK_WINDOW_SCALABLE|
+        NK_WINDOW_MINIMIZABLE|NK_WINDOW_TITLE))
+        {
+            nk_layout_row_static(this->ctx, 10, 140, 1);
+            nk_label(this->ctx, "Hello and welcome :)", NK_TEXT_CENTERED);
+            enum {EASY, HARD};
+            static int op = EASY;
+            static int property = 20;
+            nk_layout_row_static(this->ctx, 30, 80, 1);
+            if (nk_button_label(this->ctx, "button"))
+                lovely::logging::logger::info("Button was pressed", NULL);
+            
+            nk_layout_row_dynamic(this->ctx, 30, 2);
+            if (nk_option_label(this->ctx, "easy", op == EASY)) op = EASY;
+            if (nk_option_label(this->ctx, "hard", op == HARD)) op = HARD;
+            
+            nk_layout_row_dynamic(this->ctx, 25, 1);
+            nk_property_int(this->ctx, "Compression:", 0, &property, 100, 10, 1);
+
+            nk_layout_row_dynamic(this->ctx, 20, 1);
+            nk_label(this->ctx, "background:", NK_TEXT_LEFT);
+            nk_layout_row_dynamic(this->ctx, 25, 1);
+
+            if (nk_combo_begin_color(this->ctx, nk_rgb_cf(bg), nk_vec2(nk_widget_width(ctx),400))) {
+                nk_layout_row_dynamic(this->ctx, 120, 1);
+                bg = nk_color_picker(this->ctx, bg, NK_RGBA);
+                nk_layout_row_dynamic(this->ctx, 25, 1);
+                bg.r = nk_propertyf(this->ctx, "#R:", 0, bg.r, 1.0f, 0.01f,0.005f);
+                bg.g = nk_propertyf(this->ctx, "#G:", 0, bg.g, 1.0f, 0.01f,0.005f);
+                bg.b = nk_propertyf(this->ctx, "#B:", 0, bg.b, 1.0f, 0.01f,0.005f);
+                bg.a = nk_propertyf(this->ctx, "#A:", 0, bg.a, 1.0f, 0.01f,0.005f);
+                nk_combo_end(this->ctx);
+			}
+        }
+        nk_end(this->ctx);
+        glfwGetWindowSize(this->window, &width, &height);
+        glViewport(0, 0, this->width, this->height);
+        glClear(GL_COLOR_BUFFER_BIT);
+        glClearColor(this->bg.r, this->bg.g, this->bg.b, this->bg.a);
+        nk_glfw3_render(NK_ANTI_ALIASING_ON);
+        glfwSwapBuffers(this->window);
     }
 
     void Window::load_shaders() {
