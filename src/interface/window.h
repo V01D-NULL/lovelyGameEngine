@@ -7,6 +7,7 @@
 #include <string>
 #include <iostream>
 
+#ifdef UI_INCLUDE_SAFE
 #define NK_INCLUDE_FIXED_TYPES
 #define NK_INCLUDE_STANDARD_IO
 #define NK_INCLUDE_STANDARD_VARARGS
@@ -19,6 +20,7 @@
 #define NK_KEYSTATE_BASED_INPUT
 #include "../nuklear.h"
 #include "../nuklear_glfw_gl2.h"
+#endif
 
 namespace lovely {
     class Window {
@@ -33,9 +35,11 @@ namespace lovely {
         void draw_UI();
     private:
         GLFWwindow *window;
+        #ifdef UI_INCLUDE_SAFE
         struct nk_colorf bg;
         struct nk_context *ctx;
         struct nk_font_atlas *atlas;
+        #endif
         int width;
         int height;
 	    

@@ -1,5 +1,4 @@
 #include "window.h"
-#include <GL/gl.h>
 
 
 namespace lovely {
@@ -65,22 +64,20 @@ namespace lovely {
         load_shaders();
 
         //prepare UI
+        #ifdef UI_INCLUDE_SAFE 
         this->ctx = nk_glfw3_init(this->window, NK_GLFW3_INSTALL_CALLBACKS);
         nk_glfw3_font_stash_begin(&atlas);
         nk_glfw3_font_stash_end();
         this->bg.r = 0.10f, this->bg.g = 0.18f, this->bg.b = 0.24f, this->bg.a = 1.0f;
+        #endif
 
         //Main loop
         while (!glfwWindowShouldClose(window))
         {   
             glfwPollEvents();
-            // this->draw_UI();
+            this->draw_UI();
             
-            glBegin(GL_POLYGON);
-                glColor3f(1, 0, 0); glVertex3f(-0.6, -0.75, 0.5);
-                glColor3f(0, 1, 0); glVertex3f(0.6, -0.75, 0);
-                glColor3f(0, 0, 1); glVertex3f(0, 0.75, 0);
-            glEnd();
+
             
         }
     }
@@ -88,6 +85,7 @@ namespace lovely {
     //Any UI changes should go in here
     void Window::draw_UI()
     {
+        #ifdef UI_INCLUDE_SAFE
         nk_glfw3_new_frame();
         if (nk_begin(this->ctx, "Lovely UI demo", nk_rect(50, 50, 230, 250),
         NK_WINDOW_BORDER|NK_WINDOW_MOVABLE|NK_WINDOW_SCALABLE|
@@ -131,6 +129,7 @@ namespace lovely {
         glClearColor(this->bg.r, this->bg.g, this->bg.b, this->bg.a);
         nk_glfw3_render(NK_ANTI_ALIASING_ON);
         glfwSwapBuffers(this->window);
+        #endif
     }
 
     void Window::load_shaders() {
@@ -160,3 +159,4 @@ namespace lovely {
         lovely::logging::logger::info("~window", NULL);
     }
 }
+ 
