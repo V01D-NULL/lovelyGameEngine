@@ -23,8 +23,9 @@ popd
 echo "Building nanogui"
 pushd nanogui/build
 cmake ..
-make nanogui
-sudo make install
+make nanogui || exit
+sudo make install || exit
+sudo cp ../ext/nanovg/src/nanovg.h /usr/include/nanovg.h
 popd
 
-echo "NOTE: You have to move /usr/include/eigen3/Eigen to /usr/include/Eigen in order for nanogui to work"
+sudo mv /usr/include/eigen3/Eigen /usr/include/Eigen
