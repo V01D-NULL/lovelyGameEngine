@@ -24,7 +24,8 @@ namespace lovely {
 
             //Read from file
             std::ifstream in_file;
-            in_file.open(vertex_shader_src.c_str());
+
+            in_file.open(vertex_shader_src);
             if (in_file.is_open()) 
             {
                 while (std::getline(in_file, temp))
@@ -32,7 +33,7 @@ namespace lovely {
                     src += temp.append("\n"); //Write current line to `src` and append a newline to it.
                 }
             }
-            else { lovely::logging::logger::err("Could not open the shader, thus the file cannot be parsed. (Perhaps double check your spelling?)", NULL); }
+            else { lovely::logging::logger::err("Could not open the shader, thus the file cannot be parsed. (Perhaps double check your spelling?)", NULL); return state_of_shader = false;}
             in_file.close();
 
             /* Pass all the info to OpenGL */
@@ -45,7 +46,7 @@ namespace lovely {
             // glCompileShader(vertex_shader);                                 //Tell OpenGL to compile the shader
             // glGetShaderiv(vertex_shader, GL_COMPILE_STATUS, &success);      //Check for errors
 
-            return state_of_shader;
+            return state_of_shader = true;
         }
     }
 }

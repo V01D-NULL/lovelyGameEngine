@@ -1,6 +1,6 @@
 # Install dependencies
 sudo apt update
-sudo apt install xorg-dev libglu1-mesa-dev libglfw3-dev libsoil-dev libglm-dev cmake libglew-dev libstb-dev libeigen3-dev -y
+sudo apt install xorg-dev libglu1-mesa-dev libglfw3-dev libsoil-dev libglm-dev cmake libglew-dev libstb-dev libeigen3-dev python-dev -y
 
 cd ..
 
@@ -21,11 +21,12 @@ popd
 
 # Build nanogui
 echo "Building nanogui"
+mkdir nanogui/build
 pushd nanogui/build
 cmake ..
-make nanogui || exit
-sudo make install || exit
-sudo cp ../ext/nanovg/src/nanovg.h /usr/include/nanovg.h
+make nanogui
+sudo make install
+sudo cp "../ext/nanovg/src/nanovg.h" "/usr/include/nanovg.h"
 popd
 
-sudo mv /usr/include/eigen3/Eigen /usr/include/Eigen
+sudo mv "/usr/include/eigen3/Eigen" "/usr/include/Eigen"

@@ -1,8 +1,8 @@
 CC = @g++
-LDFLAGS = -lglfw3 -lX11 -lXxf86vm -lXrandr -lpthread -lXi -ldl -lXinerama -lXcursor -lGLEW -lSOIL -lGL -lGLU
+LDFLAGS = -lglfw3 -lX11 -lXxf86vm -lXrandr -lpthread -lXi -ldl -lXinerama -lXcursor -lGLEW -lSOIL -lGL -lGLU -lnanogui
 SRCS = $(shell find src/ -type f -name '*.cxx')
 OBJ = $(SRCS:.cxx=.o)
-CFLAGS = -c -std=c++14 -fconcepts -fpermissive
+CFLAGS = -c -fconcepts -fpermissive
 OUTFILE = lovelyEngine.exec
 
 # CL = color
