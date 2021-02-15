@@ -1,1 +1,0 @@
-/usr/bin/c++ -fvisibility=hidden  -Wall -Wextra -std=c++14 -flto -fno-fat-lto-objects -O3 -DNDEBUG  -flto -rdynamic CMakeFiles/example2.dir/src/example2.cpp.o -o example2  -Wl,-rpath,/home/user/lovelyGameEngine/nanogui/build libnanogui.so -lGL -lXxf86vm -lXrandr -lXinerama -lXcursor -lXi -lX11 -lpthread -lrt -ldl 
