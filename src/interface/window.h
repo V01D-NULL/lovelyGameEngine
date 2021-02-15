@@ -8,7 +8,6 @@
 #include <iostream>
 
 
-
 namespace lovely {
     class Window {
     //Constructor / Destructor
@@ -21,6 +20,9 @@ namespace lovely {
         void load_shaders();
 
     private:
-        GLFWwindow* window;
+        GLFWwindow *window;
+        int width;
+        int height;
+	    
     };
 }
