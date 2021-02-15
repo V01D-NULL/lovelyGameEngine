@@ -13,7 +13,7 @@ cp lovelyGameEngine/ZIP_FILES/glfw-$GLFW_VER.zip .
 
 
 echo "Building glfw"
-pushd ~/glfw-$GLFW_VER/glfw-$GLFW_VER/
+pushd glfw-$GLFW_VER/glfw-$GLFW_VER/
 sudo cmake -G "Unix Makefiles"
 sudo make
 sudo make install
@@ -21,10 +21,10 @@ popd
 
 # Build nanogui
 echo "Building nanogui"
-mkdir nanogui/build
-pushd nanogui/build
+mkdir lovelyGameEngine/nanogui/build
+pushd lovelyGameEngine/nanogui/build
 cmake ..
-make nanogui
+make
 sudo make install
 sudo cp "../ext/nanovg/src/nanovg.h" "/usr/include/nanovg.h"
 popd
