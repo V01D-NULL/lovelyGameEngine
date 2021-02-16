@@ -6,7 +6,7 @@ namespace lovely
     {
         namespace gfx
         {
-            //Triangle verticies
+            //Triangle vertices
             lovely::core::Vertex vertices[] = 
             {
                 // Position                          //Color
