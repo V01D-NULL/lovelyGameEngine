@@ -76,7 +76,7 @@ namespace lovely {
         {   
             glfwPollEvents();
             this->draw_UI();
-            
+            //Pass in stuff from the renderer here
 
             
         }
@@ -159,4 +159,6 @@ namespace lovely {
         lovely::logging::logger::info("~window", NULL);
     }
 }
+  
+ 
  
