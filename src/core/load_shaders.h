@@ -1,10 +1,9 @@
 #pragma once
 
+#include "../main.h"
 #include <fstream>
-#include <GLFW/glfw3.h>
 #include <string>
 #include "./logging/logging.h"
-
 
 namespace lovely {
     namespace GL {

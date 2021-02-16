@@ -1,8 +1,8 @@
 #pragma once
 
+#include "../main.h"
 #include "../core/logging/logging.h"
 #include "events.h"
-#include "../main.h"
 #include "../core/load_shaders.h"
 #include "../core/gfx/renderer.h"
 #include <string>

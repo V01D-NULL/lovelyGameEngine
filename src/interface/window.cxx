@@ -15,7 +15,7 @@ namespace lovely {
             = Catch any errors
             = Adjust the viewport
         */
-        lovely::logging::logger::info("Creating window", NULL);
+        lovely::logging::logger::info(__FILE__, "Creating window", NULL);
         this->width = width;
         this->height = height;
         
@@ -25,7 +25,7 @@ namespace lovely {
         if (!window || window == NULL) 
         {
             std::string result;
-            lovely::logging::logger::err("Could not create window!\nAbort? (y/n) ", NULL);
+            lovely::logging::logger::err(__FILE__, "Could not create window!\nAbort? (y/n) ", NULL);
             std::cin >> result;
             if (result == "y")
             {
@@ -52,7 +52,6 @@ namespace lovely {
             = Set function callbacks
             = Enter main loop, poll events, render, etc...
         */
-        Main main;
 
         //Setup event handlers
         lovely::events::Events lovely_events;
@@ -60,9 +59,8 @@ namespace lovely {
         glfwSetWindowSizeCallback(window, lovely_events.E_resize_callback);
         glfwSetKeyCallback(window, lovely_events.E_input);
 
-        // main.createVBO();
-        load_shaders();
-
+        this->load_shaders();
+        
         //prepare UI
         #ifdef UI_INCLUDE_SAFE 
         this->ctx = nk_glfw3_init(this->window, NK_GLFW3_INSTALL_CALLBACKS);
@@ -147,7 +145,7 @@ namespace lovely {
         std::string fragment_core = "src/GL/shaders/fragment_core.glsl";
         if (!shader.load_basic_shaders(program, vertex_core, fragment_core))
         {
-            lovely::logging::logger::err("Function `load_shader` returned false!", NULL);
+            lovely::logging::logger::err(__FILE__,"Function `load_shader` returned false!", NULL);
         }
     }
 
@@ -156,9 +154,11 @@ namespace lovely {
         /*
             Deconstructor
         */
-        lovely::logging::logger::info("~window", NULL);
+        lovely::logging::logger::info(__FILE__, "~window", NULL);
     }
 }
   
+ 
+ 
  
  

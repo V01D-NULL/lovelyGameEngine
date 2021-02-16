@@ -1,13 +1,21 @@
 #pragma once
 
+#include "../../main.h"
 #include "../core.h"
+#include "../logging/logging.h"
 
 namespace lovely
 {
-    namespace gfx
+    namespace core
     {
-        class Renderer
+        namespace gfx
         {
-        };
+            class Renderer
+            {
+                public:
+                    void VAO();
+            };
+            
+        }
     }
 }

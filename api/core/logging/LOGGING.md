@@ -1,12 +1,13 @@
 # 3 standard logging methods (Not programming methods) -> info, warn, and err:
 
 ### EXAMPLE:
-    lovely::logging::logger::info("test", NULL);
+    lovely::logging::logger::info(__FILE__, "test", NULL);
 
 ### !IMPORTANT!
- - ONLY STRINGS, 
- - MUST END WITH THE >NULL< keyword,
- - THERE IS NO LIMIT TO THE ARGUMENTS ONE CAN PASS TO THE FUNCTION
+ - The logger only accepts C style strings
+ - The arguments must end with a null keyword
+ - The logger is a variadic constructor class meaning there is no limit to the amount of arguments one can pass
+ - For improved debugging purpose lovely's logging mechanism now expects __FILE__ as the first parameter. Please not that this isn't required but it is recommended (mainly because of the akward formatting you will get otherwise)
 
 ### Passing variables to the lovely logger:
  NOTE:
@@ -20,5 +21,5 @@
     std::string msg = "test"; //Or const char*
     std::string a_converted = std::to_string(a); //Convert 4 to "4"
     //Incase std::string is passed, use the .c_str() function.
-    ...info(msg.c_str(), a_converted.c_str(), NULL);
+    ...info(__FILE__, msg.c_str(), a_converted.c_str(), NULL);
 ```

@@ -1,7 +1,4 @@
-//Graphics libs
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-#include <SOIL/SOIL.h>
+#include "main.h"
 
 //Other
 #include <iostream>
@@ -9,12 +6,17 @@
 #include <string>
 
 #include "core/logging/logging.h"
+#include "core/gfx/renderer.h"
 #include "interface/window.h"
 #include "core/core.h"
 #include "init.h"
-#include "main.h"
+
 
 int main() {
+    lovely::logging::logger::info(__FILE__, "test", NULL);
+    lovely::logging::logger::warn(__FILE__, "test", NULL);
+    lovely::logging::logger::err(__FILE__, "test", NULL);
+    return 1;
     //Init glfw
     lovely::init initializer;
     initializer.init_glfw();
@@ -24,12 +26,10 @@ int main() {
 
     initializer.init_glew(); //glew must be initialized after creating a window
 
+    lovely::core::gfx::Renderer r;
+    r.VAO();
+
     //Poll events
     window.pollEvents();
 
-}
-
-void Main::createVBO() {
-    GLuint b = 10;
-    glGenBuffers(sizeof(int), &b);
 }

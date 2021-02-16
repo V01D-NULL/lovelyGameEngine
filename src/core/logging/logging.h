@@ -19,9 +19,18 @@ namespace lovely
                 info(const char* arg, ...)
                 {
                     va_list arguments;
-                    std::cout << "[INFO]: ";
+                    
+                    std::cout << "[INFO (";
+                    bool printed_src_file = false;
+
                     for (va_start(arguments, arg); arg != NULL; arg = va_arg(arguments, const char *)) {
                         std::cout << arg << " ";
+                        
+                        if (!printed_src_file)
+                        {
+                            std::cout << "\b)]: ";
+                            printed_src_file = true;
+                        }
                     }
 
                     va_end(arguments);
@@ -36,9 +45,18 @@ namespace lovely
                 warn(const char* arg, ...)
                 {
                     va_list arguments;
-                    std::cout << "[WARNING]: \x1B[33m";
+
+                    bool printed_src_file = false;
+                    std::cout << "[WARNING (";
+
                     for (va_start(arguments, arg); arg != NULL; arg = va_arg(arguments, const char *)) {
                         std::cout << arg << " ";
+
+                        if (!printed_src_file)
+                        {
+                            std::cout << "\b)]: \x1B[33m";
+                            printed_src_file = true;
+                        }
                     }
 
                     va_end(arguments);
@@ -53,9 +71,17 @@ namespace lovely
                 err(const char* arg, ...)
                 {
                     va_list arguments;
-                    std::cout << "[ERROR]: \x1B[31m";
+                    bool printed_src_file = false;
+                    std::cout << "[ERROR ("; //]: \x1B[31m
+
                     for (va_start(arguments, arg); arg != NULL; arg = va_arg(arguments, const char *)) {
                         std::cout << arg << " ";
+                        
+                        if (!printed_src_file)
+                        {
+                            std::cout << "\b)]: \x1B[31m";
+                            printed_src_file = true;
+                        }
                     }
 
                     va_end(arguments);
