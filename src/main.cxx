@@ -13,10 +13,6 @@
 
 
 int main() {
-    lovely::logging::logger::info(__FILE__, "test", NULL);
-    lovely::logging::logger::warn(__FILE__, "test", NULL);
-    lovely::logging::logger::err(__FILE__, "test", NULL);
-    return 1;
     //Init glfw
     lovely::init initializer;
     initializer.init_glfw();
@@ -26,10 +22,9 @@ int main() {
 
     initializer.init_glew(); //glew must be initialized after creating a window
 
-    lovely::core::gfx::Renderer r;
-    r.VAO();
-
     //Poll events
     window.pollEvents();
+
+    return 0;
 
 }

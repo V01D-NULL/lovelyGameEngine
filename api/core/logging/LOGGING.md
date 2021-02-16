@@ -7,7 +7,7 @@
  - The logger only accepts C style strings
  - The arguments must end with a null keyword
  - The logger is a variadic constructor class meaning there is no limit to the amount of arguments one can pass
- - For improved debugging purpose lovely's logging mechanism now expects __FILE__ as the first parameter. Please not that this isn't required but it is recommended (mainly because of the akward formatting you will get otherwise)
+ - For improved debugging purpose lovely's logging mechanism now expects `__FILE__` as the first parameter. Please not that this isn't required but it is recommended (mainly because of the akward formatting you will get otherwise)
 
 ### Passing variables to the lovely logger:
  NOTE:

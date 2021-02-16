@@ -14,7 +14,7 @@ namespace lovely {
                 --
                 = For now just log, in the future a dialog box will pop-up asking for confirmation.
             */
-            lovely::logging::logger::info("Window is closing", NULL);
+            lovely::logging::logger::info(__FILE__, "Window is closing", NULL);
         }
 
         //Handle resize events
@@ -31,7 +31,7 @@ namespace lovely {
             std::string w, h;
             w = std::to_string(width);
             h = std::to_string(height);
-            lovely::logging::logger::info(" Width: ", w.c_str(), "Height: ", h.c_str(), NULL);
+            lovely::logging::logger::info(__FILE__, " Width: ", w.c_str(), "Height: ", h.c_str(), NULL);
             glViewport(0, 0, width, height);
         }
 
